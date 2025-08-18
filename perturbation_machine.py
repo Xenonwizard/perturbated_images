@@ -41,7 +41,7 @@ class HenryGoldingPerturbationGenerator:
     
     def __init__(self, 
                  model: nn.Module,
-                 dataset_path: str = './perturbation',
+                 dataset_path: str = './celeb-dataset/caucasian/henrygolding',
                  input_shape: Tuple[int, int, int] = (3, 224, 224),
                  nb_classes: int = 2,
                  device: str = 'cuda',
