@@ -584,7 +584,7 @@ def main():
     # Initialize the generator
     generator = HenryGoldingPerturbationGenerator(
         model=model,
-        dataset_path='./perturbation',  # Path to your Henry Golding images
+        dataset_path='./celeb-dataset/caucasian/henrygolding',  # Path to your Henry Golding images
         input_shape=(3, 224, 224),
         nb_classes=2,
         device='cuda',
