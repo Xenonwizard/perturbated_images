@@ -74,7 +74,7 @@ class HenryGoldingPerturbationGenerator:
             nb_classes=nb_classes,
             device_type='gpu' if torch.cuda.is_available() else 'cpu',
             clip_values=(0.0, 1.0),          # inputs are in [0, 1]
-            channels_first=False             # because you keep images as HWC
+            channels_first=True            # because you keep images as HWC
         )
         
         # Initialize attack methods
