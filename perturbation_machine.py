@@ -574,9 +574,14 @@ def main():
             self.classifier = nn.Linear(256, 2)  # Binary: real/fake
         
         def forward(self, x):
+            # If input is (B, H, W, C), reorder to (B, C, H, W)
+            if x.ndim == 4 and x.shape[1] != 3 and x.shape[-1] == 3:
+                x = x.permute(0, 3, 1, 2)   # NHWC -> NCHW
+            
             x = self.features(x)
             x = x.view(x.size(0), -1)
             return self.classifier(x)
+
     
     # Initialize your model
     model = DeepfakeDetector()  # Replace with your actual model
