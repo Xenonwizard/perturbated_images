@@ -24,12 +24,12 @@ from art.estimators.classification import PyTorchClassifier
 from art.attacks.evasion import (
     ProjectedGradientDescent,
     FastGradientMethod,
-    CarliniWagnerL2,
     DeepFool,
     BasicIterativeMethod,
     MomentumIterativeMethod,
     AutoAttack,
-    SquareAttack
+    SquareAttack,
+    CarliniL2Method,
 )
 
 
@@ -72,7 +72,9 @@ class HenryGoldingPerturbationGenerator:
             loss=nn.CrossEntropyLoss(),
             input_shape=input_shape,
             nb_classes=nb_classes,
-            device_type='gpu' if torch.cuda.is_available() else 'cpu'
+            device_type='gpu' if torch.cuda.is_available() else 'cpu',
+            clip_values=(0.0, 1.0),          # inputs are in [0, 1]
+            channels_first=False             # because you keep images as HWC
         )
         
         # Initialize attack methods
@@ -163,7 +165,6 @@ class HenryGoldingPerturbationGenerator:
             classifier=self.art_classifier,
             max_iter=50,
             epsilon=1e-6,
-            nb_grads=10,
             batch_size=self.batch_size
         )
     
