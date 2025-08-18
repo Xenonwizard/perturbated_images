@@ -155,7 +155,7 @@ class HenryGoldingPerturbationGenerator:
             eps=8/255,
             eps_step=2/255,
             max_iter=40,
-            decay_factor=1.0,
+            decay=1.0,
             targeted=False,
             batch_size=self.batch_size
         )
