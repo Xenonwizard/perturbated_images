@@ -95,7 +95,7 @@ class HenryGoldingPerturbationGenerator:
         image_files = []
         
         # Get all image files
-        for file in dataset_path.glob('henrygolding*'):
+        for file in dataset_path.glob('*'):
             if file.suffix.lower() in ['.jpg', '.jpeg', '.png', '.bmp']:
                 image_files.append(str(file))
         
